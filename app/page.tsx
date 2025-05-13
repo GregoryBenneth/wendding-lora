@@ -134,38 +134,30 @@ export default function Home() {
 
             {/* Botão de Confirmar Presença - vazio por enquanto */}
             <div className="flex flex-col items-center gap-2">
-              <a
-                href="#"
-                className="block"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.preventDefault()}
+              <motion.div
+                className="w-16 h-16 bg-[#6D3841] rounded-full flex items-center justify-center"
+                whileHover={{
+                  scale: 1.1,
+                  boxShadow: "0 0 15px 2px rgba(216, 197, 201, 0.3)",
+                  backgroundColor: "#7d424c",
+                }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                <motion.div
-                  className="w-16 h-16 bg-[#6D3841] rounded-full flex items-center justify-center"
-                  whileHover={{
-                    scale: 1.1,
-                    boxShadow: "0 0 15px 2px rgba(216, 197, 201, 0.3)",
-                    backgroundColor: "#7d424c",
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                <svg
+                  className="w-6 h-6"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
                 >
-                  <svg
-                    className="w-6 h-6"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" />
-                  </svg>
-                </motion.div>
-                <motion.span
-                  className="text-sm text-center font-medium tracking-wide"
-                  whileHover={{ color: "#ffffff" }}
-                >
-                  Confirmar presença
-                </motion.span>
-              </a>
+                  <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" />
+                </svg>
+              </motion.div>
+              <motion.span
+                className="text-sm text-center font-medium tracking-wide"
+                whileHover={{ color: "#ffffff" }}
+              >
+                Confirmar presença
+              </motion.span>
             </div>
 
             {/* Botão de Lista de Presentes */}
@@ -191,9 +183,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.7 }}
           transition={{ delay: 2.3, duration: 0.8 }}
-        >
-          <p>sites.icasei.com.br/rodrigoedebora2025</p>
-        </motion.div>
+        ></motion.div>
 
         {/* Background decorativo */}
         <div className="fixed inset-0 -z-10 opacity-5 pointer-events-none">
