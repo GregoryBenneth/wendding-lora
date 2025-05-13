@@ -1,103 +1,206 @@
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { GlowingCard } from "./components/GlowingCard";
+import { AnimatedText } from "./components/AnimatedText";
+import { AnimatedButton } from "./components/AnimatedButton";
+import { Divider } from "./components/Divider";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen flex flex-col items-center justify-center p-6 py-16 bg-gradient-to-b from-[#2c0515] to-[#3c0718]">
+      <motion.div
+        className="max-w-lg w-full mx-auto flex flex-col items-center text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        {/* Monograma Animado */}
+        <motion.div
+          className="w-20 h-20 mb-10 relative"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className="absolute inset-0 bg-[#7D424C] rounded-full opacity-10"></div>
+          <div className="absolute inset-2 border border-[#E8D5D9]/30 rounded-full flex items-center justify-center">
+            <span className="font-cormorant text-3xl text-[#E8D5D9]/80 tracking-wide">
+              D&R
+            </span>
+          </div>
+        </motion.div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        {/* Cabeçalho com os nomes */}
+        <div className="mb-8">
+          <motion.h1
+            className="text-4xl md:text-5xl font-cormorant font-light tracking-widest"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+            <motion.span
+              className="block mb-2"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              DÉBORA
+            </motion.span>
+            <motion.span
+              className="block w-10 h-px bg-[#E8D5D9]/30 mx-auto my-3"
+              initial={{ width: 0 }}
+              animate={{ width: 40 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <motion.span
+              className="block"
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.7 }}
+            >
+              RODRIGO
+            </motion.span>
+          </motion.h1>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+
+        <Divider />
+
+        {/* Card principal com o convite */}
+        <GlowingCard className="p-8 md:p-10 mb-10 backdrop-blur-sm bg-[#3c0719]/40">
+          {/* Ícone decorativo */}
+          <div className="w-10 h-10 mx-auto mb-6 opacity-70">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
+            </svg>
+          </div>
+
+          <AnimatedText
+            text="Juntamente com suas famílias convidam para o seu casamento a ser realizado dia"
+            className="text-sm md:text-base font-light mb-6 leading-relaxed"
+            delay={1}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+
+          <motion.p
+            className="text-xl md:text-2xl font-cormorant font-semibold mb-6 tracking-wide"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.5, duration: 0.6 }}
+          >
+            14/06/2025 ÀS 20:00 HORAS
+          </motion.p>
+
+          <motion.div
+            className="text-sm opacity-80 font-light"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.8, duration: 0.8 }}
+          >
+            <p className="mb-2 font-cormorant">
+              Catedral Metropolitana Nossa Senhora Aparecida
+            </p>
+            <p className="text-xs text-[#E8D5D9]/70">
+              Praça Pio XI s/n - Centro Montes Claros - MG Brasil
+            </p>
+          </motion.div>
+        </GlowingCard>
+
+        {/* Seção de interação */}
+        <motion.div
+          className="w-full mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2, duration: 0.8 }}
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <p className="text-xs opacity-80 mb-8 font-light tracking-wider">
+            TOQUE NOS ÍCONES PARA INTERAGIR
+          </p>
+
+          <div className="grid grid-cols-3 gap-6">
+            {/* Botão de Enviar Mensagem */}
+            <AnimatedButton
+              href="https://sites.icasei.com.br/rodrigoedebora2025/messages"
+              icon={
+                <svg
+                  className="w-6 h-6"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M20,16H6L4,18V4H20" />
+                </svg>
+              }
+              label="Enviar uma mensagem"
+            />
+
+            {/* Botão de Confirmar Presença - vazio por enquanto */}
+            <div className="flex flex-col items-center gap-2">
+              <a
+                href="#"
+                className="block"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.preventDefault()}
+              >
+                <motion.div
+                  className="w-16 h-16 bg-[#6D3841] rounded-full flex items-center justify-center"
+                  whileHover={{
+                    scale: 1.1,
+                    boxShadow: "0 0 15px 2px rgba(216, 197, 201, 0.3)",
+                    backgroundColor: "#7d424c",
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  <svg
+                    className="w-6 h-6"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" />
+                  </svg>
+                </motion.div>
+                <motion.span
+                  className="text-sm text-center font-medium tracking-wide"
+                  whileHover={{ color: "#ffffff" }}
+                >
+                  Confirmar presença
+                </motion.span>
+              </a>
+            </div>
+
+            {/* Botão de Lista de Presentes */}
+            <AnimatedButton
+              href="https://sites.icasei.com.br/rodrigoedebora2025/pages/34388127"
+              icon={
+                <svg
+                  className="w-6 h-6"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M22,12V20A2,2 0 0,1 20,22H4A2,2 0 0,1 2,20V12A1,1 0 0,1 1,11V8A2,2 0 0,1 3,6H6.17C6.06,5.69 6,5.35 6,5A3,3 0 0,1 9,2C10,2 10.88,2.5 11.43,3.24V3.23L12,4L12.57,3.23V3.24C13.12,2.5 14,2 15,2A3,3 0 0,1 18,5C18,5.35 17.94,5.69 17.83,6H21A2,2 0 0,1 23,8V11A1,1 0 0,1 22,12M4,20H20V12H17V10H15V12H9V10H7V12H4V20M6,8H9V6H6V8M15,8H18V6H15V8M9,4A1,1 0 0,0 8,5A1,1 0 0,0 9,6A1,1 0 0,0 10,5A1,1 0 0,0 9,4M15,4A1,1 0 0,0 14,5A1,1 0 0,0 15,6A1,1 0 0,0 16,5A1,1 0 0,0 15,4Z" />
+                </svg>
+              }
+              label="Lista de presentes"
+            />
+          </div>
+        </motion.div>
+
+        {/* Website URL */}
+        <motion.div
+          className="text-xs opacity-70 mt-8 font-cormorant tracking-widest"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.7 }}
+          transition={{ delay: 2.3, duration: 0.8 }}
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <p>sites.icasei.com.br/rodrigoedebora2025</p>
+        </motion.div>
+
+        {/* Background decorativo */}
+        <div className="fixed inset-0 -z-10 opacity-5 pointer-events-none">
+          <div className="absolute top-0 left-0 w-40 h-40 bg-[#7D424C] rounded-full filter blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-60 h-60 bg-[#7D424C] rounded-full filter blur-3xl"></div>
+        </div>
+      </motion.div>
     </div>
   );
 }
